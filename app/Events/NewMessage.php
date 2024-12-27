@@ -15,10 +15,9 @@ class NewMessage implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
-    public function __construct(public $message,public $user)
+    public function __construct(public $message)
     {
         $this->message = $message;
-        $this->user = $user;
 
     }
 
@@ -30,7 +29,7 @@ class NewMessage implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'),
+            new PrivateChannel('chat'),
         ];
     }
 }
